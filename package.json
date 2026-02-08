@@ -1,0 +1,25 @@
+{
+  "name": "node-meme-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^27.0.0",
+    "@types/node": "^25.0.10",
+    "eslint": "^9.39.2",
+    "eslint-config-upleveled": "^9.4.6",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@10.24.0",
+  "dependencies": {
+    "jsdom": "^27.4.0"
+  }
+}
