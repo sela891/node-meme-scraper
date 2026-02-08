@@ -30,7 +30,12 @@ async function saveImages() {
     } else {
       fileNumber = '10';
     }
-    fs.writeFileSync(`memes/${fileNumber}.jpg`, buffer);
+    const folderMemes = 'memes';
+    // Check if folderMemes exists; if not, create it
+    if (!fs.existsSync(folderMemes)) {
+      fs.mkdirSync(folderMemes, { recursive: true });
+    }
+    fs.writeFileSync(`${folderMemes}/${fileNumber}.jpg`, buffer);
   }
 }
 
