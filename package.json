@@ -20,6 +20,6 @@
   },
   "packageManager": "pnpm@10.24.0",
   "dependencies": {
-    "jsdom": "^27.4.0"
+    "cheerio": "^1.2.0"
   }
 }

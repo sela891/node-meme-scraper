@@ -1,19 +1,18 @@
 // Node file system and buffer needed to save images.
 import { Buffer } from 'node:buffer';
 import fs from 'node:fs';
-// Parse HTML and create document object to be able to use query selector.
-import { JSDOM } from 'jsdom';
+// Document query selector not allowed by eslint, therefore using cheerio to select images
+import * as cheerio from 'cheerio';
 
 async function getImageLinks() {
-  const linkMemegen = 'https://memegen-link-examples-upleveled.netlify.app/';
-  const response = await fetch(linkMemegen);
+  const linkMemeGen = 'https://memegen-link-examples-upleveled.netlify.app/';
+  const response = await fetch(linkMemeGen);
   const htmlData = await response.text();
-  const jsdom = new JSDOM(htmlData);
-  const document = jsdom.window.document;
-  const imgObjects = document.querySelectorAll('img');
+  const $ = cheerio.load(htmlData);
+  const imgObjects = $('img');
   const imgLinks = [];
   for (let i = 0; i < 10; i++) {
-    imgLinks.push(imgObjects[i].src);
+    imgLinks.push($(imgObjects[i]).attr('src'));
   }
   return imgLinks;
 }
@@ -39,4 +38,10 @@ async function saveImages() {
   }
 }
 
-saveImages();
+saveImages()
+  .then(() => {
+    console.log('Successfully saved 10 memes!');
+  })
+  .catch((err) => {
+    console.error('An error occurred:', err);
+  });
